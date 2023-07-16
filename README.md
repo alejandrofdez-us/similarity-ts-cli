@@ -1,24 +1,11 @@
-[![version](https://img.shields.io/badge/version-2.0-blue)](https://github.com/alejandrofdez-us/TimeSeriesEvaluationFramework/releases)
-[![Python 3.9](https://img.shields.io/badge/python-3.9-darkgreen)](https://www.python.org/downloads/release/python-390/)
-[![last-update](https://img.shields.io/badge/last_update-07/XY/2023-brightgreen)](https://github.com/alejandrofdez-us/TimeSeriesEvaluationFramework/commits/main)
-![license](https://img.shields.io/badge/license-MIT-orange)
-
-# SimilarityTS: Toolkit for the Evaluation of Similarity for multivariate time series
-
-## Table of Contents
-
-- [Project Description](#project-description)
-- [Installation](#installation)
-- [Usage](#usage)
-- [License](#license)
 
 ## Project Description
 
-Time Series Evaluation Framework is an open-source project designed to facilitate the evaluation and comparison of
+SimilarityTS is an open-source project designed to facilitate the evaluation and comparison of
 multivariate time series data. It provides a comprehensive toolkit for analyzing, visualizing, and reporting multiple
-metrics and figures derived from time series datasets. The framework simplifies the process of evaluating time series by
-offering data preprocessing, metrics computation, visualization, statistical analysis, and report generation
-functionalities. With its customizable features, Time Series Evaluation Framework empowers researchers and data
+metrics and figures derived from time series datasets. The toolkit simplifies the process of evaluating the similarity of
+time series by offering data preprocessing, metrics computation, visualization, statistical analysis, and report generation
+functionalities. With its customizable features, SimilarityTS empowers researchers and data
 scientists to gain insights, identify patterns, and make informed decisions based on their time series data.
 
 ### Available metrics
@@ -63,26 +50,14 @@ This toolkit can generate the following figures:
   there is no multivariate representation of DTW paths, only single column representations.
   ![DTW Image for cpu](docs/images/mini_sample_1/dtw/DTW_cpu.png)
 
-## Installation
+## Installation as a python binary
 
-To get started, follow these steps to install the Time Series Evaluation Framework:
+To get started, follow these steps to install the toolkit:
 
-### Step 1. Clone the repository to your local machine:
-
-```Bash
-git clone https://github.com/alejandrofdez-us/TimeSeriesEvaluationFramework
-```
-
-### Step 2. Navigate to the project directory:
+### Step 1. Install the tool in your local environment:
 
 ```Bash
-cd TimeSeriesEvaluationFramework
-```
-
-### Step 3. Install the required dependencies:
-
-```Bash
-pip install -r requirements.txt
+pip install similarity-ts-cli 
 ```
 
 ## Usage
@@ -139,42 +114,46 @@ The following arguments are also available for fine-tuning:
 
 ### Basic usage examples:
 
-The following examples of evaluation of similarity are shown below:
+Some examples of evaluation of similarity are shown below. You can download some test data 
+    ```Bash
+    wget ... &&    unzip ..
+    ```
+Or manually download from ...
 
 1. Two time series computing all metrics and figures:
     ```Bash
-    python cli.py -ts1 data_samples/example_1.csv -ts2 experiments/mini_example_1.csv
+    similarity-ts-cli -ts1 data_samples/example_1.csv -ts2 experiments/mini_example_1.csv
     ```
 
 1. Two time series computing only DTW metric and DTW figure:
     ```Bash
-    python cli.py -ts1 data_samples/example_1.csv -ts2_path experiments/mini_example_1.csv -m dtw -f dtw
+    similarity-ts-cli -ts1 data_samples/example_1.csv -ts2_path experiments/mini_example_1.csv -m dtw -f dtw
     ```
 
 1. A time series and all time series within a directory computing only DTW metric and DTW figure::
     ```Bash
-    python cli.py -ts1 data_samples/example_1.csv -ts2_path experiments -m dtw -f dtw
+    similarity-ts-cli -ts1 data_samples/example_1.csv -ts2_path experiments -m dtw -f dtw
     ```
 
 1. A time series and all time series within a directory computing every metric and figure available:
     ```Bash
-    python cli.py -ts1 data_samples/example_1.csv -ts2 experiments -m js mmd dtw ks kl cc cp hi -f delta dtw 2d pca tsne
+    similarity-ts-cli -ts1 data_samples/example_1.csv -ts2 experiments -m js mmd dtw ks kl cc cp hi -f delta dtw 2d pca tsne
     ```
 
 1. Comparison using filenames whose first rows are used as headers (all filenames must contain the same header):
     ```Bash
-    python cli.py -ts1 data_samples/example_1.csv -ts2 experiments -m dtw -f dtw -head
+    similarity-ts-cli -ts1 data_samples/example_1.csv -ts2 experiments -m dtw -f dtw -head
     ```
 
 1. Comparison between time series specifying the frequency in seconds in which samples were taken:
     ```Bash
-    python cli.py -ts1 data_samples/example_1.csv -ts2_path experiments -m dtw -f dtw -ts_freq_secs 60
+    similarity-ts-cli -ts1 data_samples/example_1.csv -ts2_path experiments -m dtw -f dtw -ts_freq_secs 60
     ```
 
 1. Comparison between time series specifying the stride that determines the step or distance by which a fixed-size
    window moves over the first time series:
     ```Bash
-    python cli.py -ts1 data_samples/example_1.csv -ts2_path experiments -m dtw -f dtw -strd 5
+    similarity-ts-cli -ts1 data_samples/example_1.csv -ts2_path experiments -m dtw -f dtw -strd 5
     ```
 
 1. Comparison between time series specifying the window selection metric to be used when selecting the most similar
@@ -182,13 +161,13 @@ The following examples of evaluation of similarity are shown below:
    the first time series:
 
     ```Bash
-    python cli.py -ts1 data_samples/example_1.csv -ts2_path experiments -m dtw -f dtw -w_select_met js
+    similarity-ts-cli -ts1 data_samples/example_1.csv -ts2_path experiments -m dtw -f dtw -w_select_met js
     ```
 
 1. Using our sample time series to compute every single metric and figure:
 
     ```Bash
-    python cli.py -ts1 data_samples/sample_1.csv -ts2_path experiments -head -m mmd dtw ks kl cc cp hi -f delta dtw 2d pca tsne -w_select_met cc -ts_freq_secs 60 -strd 5
+    similarity-ts-cli -ts1 data_samples/sample_1.csv -ts2_path experiments -head -m mmd dtw ks kl cc cp hi -f delta dtw 2d pca tsne -w_select_met cc -ts_freq_secs 60 -strd 5
     ```
 
 Every metric computation will be found in the `results` directory and every figure generated will be found at `figures`

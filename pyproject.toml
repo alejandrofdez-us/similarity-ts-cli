@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+[project]
+name = "similarity_ts_cli"
+version = "0.0.3"
+authors = [
+    { name = "Alejandro Fernández-Montes", email = "afdez@us.es" },
+    { name = "Damián Fernández-Cerero", email = "damiancerero@us.es" },
+    { name = "Felipe Escalera González", email = "fescalera@us.es" },
+]
+dependencies = ["similarity-ts", "tqdm"]
+description = "SimilarityTS-cli is an open-source tool designed to facilitate the usage of SimilarityTS package from a command line interface"
+readme = "README.md"
+requires-python = ">=3.9"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.scripts]
+similarity-ts-cli = "similarity_ts_cli.cli:main"
+
+[project.urls]
+"Homepage" = "https://github.com/alejandrofdez-us/similarity-ts-cli"
+"Bug Tracker" = "https://github.com/alejandrofdez-us/similarity-ts-cli/issues"

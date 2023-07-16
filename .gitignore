@@ -133,4 +133,4 @@ dmypy.json
 tsne-pca-big-experiment/*
 .pylintrc
 /results/
-/data_samples_to_remove/
+/data_samples/*
