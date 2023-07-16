@@ -116,9 +116,9 @@ The following arguments are also available for fine-tuning:
 
 Some examples of evaluation of similarity are shown below. You can download some test data 
     ```Bash
-    wget ... &&    unzip ..
+    wget https://github.com/alejandrofdez-us/similarity-ts-cli/raw/main/data_samples.zip && unzip data_samples.zip
     ```
-Or manually download from ...
+Or manually download and unzip from https://github.com/alejandrofdez-us/similarity-ts-cli/raw/main/data_samples.zip .
 
 1. Two time series computing all metrics and figures:
     ```Bash
