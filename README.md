@@ -32,23 +32,36 @@ This toolkit can generate the following figures:
 
   Each generated figure plots both the original and the synthetically generated data to easily obtain key insights into
   the similarities or differences between them.
+    <div align="center">
+    <img src="docs/figures/2d_sample_3_complete_TS_1_vs_TS_2.png" alt="2D Figure complete">
+    <img src="docs/figures/2d_sample_3_cpu_util_percent_TS_1_vs_TS_2.png" alt="2D Figure for used CPU percentage">
+    </div>
 - `delta`: the differences between the values of each column grouped by periods of time. For instance, the differences
-  between the cpu usage every 5 minutes or every 30 minutes. These delta can be used as a means of comparison between
+  between the percentage of cpu used every 10, 25 or 50 minutes. These delta can be used as a means of comparison between
   time series short-/mid-/long-term patterns.
-  ![Delta Image grouped by 2 minutes](docs/images/mini_sample_1/delta/cpu_TS_1_vs_TS_2_(grouped_by_2_minutes).png)
-  ![Delta Image grouped by 5 minutes](docs/images/mini_sample_1/delta/cpu_TS_1_vs_TS_2_(grouped_by_5_minutes).png)
-  ![Delta Image grouped by 10 minutes](docs/images/mini_sample_1/delta/cpu_TS_1_vs_TS_2_(grouped_by_10_minutes).png)
+    <div align="center">
+    <img src="docs/figures/delta_sample_3_cpu_util_percent_TS_1_vs_TS_2_(grouped_by_10_minutes).png" alt="Delta Figure for used CPU percentage grouped by 2 minutes">
+    <img src="docs/figures/delta_sample_3_cpu_util_percent_TS_1_vs_TS_2_(grouped_by_25_minutes).png" alt="Delta Figure for used CPU percentage grouped by 5 minutes">
+    <img src="docs/figures/delta_sample_3_cpu_util_percent_TS_1_vs_TS_2_(grouped_by_50_minutes).png" alt="Delta Figure for used CPU percentage grouped by 10 minutes">
+    </div>
+
 - `pca`: the linear dimensionality reduction technique that aims to find the principal components of a data set by
   computing the linear combinations of the original characteristics that explain the most variance in the data.
-  ![PCA Image](docs/images/pca/PCA.png)
+    <div align="center">
+    <img src="docs/figures/PCA.png" alt="PCA Figure" width="450">
+    </div>
 - `tsne`: a tool for visualising high-dimensional data sets in a 2D or 3D graphical representation allowing the creation
   of a single map that reveals the structure of the data at many different scales.
-  ![TSNE Image 300 iterations 40 perplexity](docs/images/tsne/t_SNE_iter_300-perplexity_40.png)
-  ![TSNE Image 1000 iterations 40 perplexity](docs/images/tsne/t_SNE_iter_1000-perplexity_40.png)
+    <div align="center">
+    <img src="docs/figures/t-SNE-iter_300-perplexity_5.png" alt="TSNE Figure 300 iterations 5 perplexity" width="450">
+    <img src="docs/figures/t-SNE-iter_1000-perplexity_5.png" alt="TSNE Figure 1000 iterations 5 perplexity" width="450">
+    </div>
 - `dtw` path: In addition to the numerical similarity measure, the graphical representation of the DTW path of each
   column can be useful to better analyse the similarities or differences between the time series columns. Notice that
   there is no multivariate representation of DTW paths, only single column representations.
-  ![DTW Image for cpu](docs/images/mini_sample_1/dtw/DTW_cpu.png)
+    <div align="center">
+    <img src="docs/figures/DTW_sample_3_cpu_util_percent.png" alt="DTW Figure for cpu">
+    </div>
 
 ## Installation as a python binary
 
@@ -121,9 +134,9 @@ wget https://github.com/alejandrofdez-us/similarity-ts-cli/raw/main/data_samples
 ```
 Or manually download and unzip from https://github.com/alejandrofdez-us/similarity-ts-cli/raw/main/data_samples.zip .
 
-1. Two time series computing all metrics and figures:
+1. A time series and all time series computing all metrics and figures:
     ```Bash
-    similarity-ts-cli -ts1 data_samples/alibaba2018/ts1_machine_usage_days_1_to_8_grouped_300_seconds.csv -ts2 data_samples/alibaba2018/ts2/sample_0.csv -head
+    similarity-ts-cli -ts1 data_samples/alibaba2018/ts1_machine_usage_days_1_to_8_grouped_300_seconds.csv -ts2 data_samples/alibaba2018/ts2 -head
     ```
 
 1. Two time series computing only DTW metric and DTW figure:
@@ -131,9 +144,9 @@ Or manually download and unzip from https://github.com/alejandrofdez-us/similari
     similarity-ts-cli -ts1 data_samples/alibaba2018/ts1_machine_usage_days_1_to_8_grouped_300_seconds.csv -ts2 data_samples/alibaba2018/ts2/sample_0.csv -head -m dtw -f dtw
     ```
 
-1. A time series and all time series within a directory computing only DTW metric and DTW figure:
+1. Two time series computing only DTW metric and DTW figure:
     ```Bash
-    similarity-ts-cli -ts1 data_samples/alibaba2018/ts1_machine_usage_days_1_to_8_grouped_300_seconds.csv -ts2 data_samples/alibaba2018/ts2 -head -m dtw -f dtw
+    similarity-ts-cli -ts1 data_samples/alibaba2018/ts1_machine_usage_days_1_to_8_grouped_300_seconds.csv -ts2 data_samples/alibaba2018/ts2/sample_0.csv -head -m dtw -f dtw
     ```
 
 1. A time series and all time series within a directory computing every metric and figure in SimilarityTS toolkit:
