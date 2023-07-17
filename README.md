@@ -115,10 +115,10 @@ The following arguments are also available for fine-tuning:
 ### Basic usage examples:
 
 Some examples of evaluation of similarity are shown below. You can download some test data by running the following command:
-```Bash
-similarity-ts-cli -ts1 data_samples/example_1.csv -ts2 experiments/mini_example_1.csv
-```
 
+```Bash
+wget https://github.com/alejandrofdez-us/similarity-ts-cli/raw/main/data_samples.zip && unzip data_samples.zip
+```
 Or manually download and unzip from https://github.com/alejandrofdez-us/similarity-ts-cli/raw/main/data_samples.zip .
 
 1. Two time series computing all metrics and figures:
