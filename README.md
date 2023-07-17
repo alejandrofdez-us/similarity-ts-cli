@@ -93,7 +93,7 @@ Finally, metrics and figures that assess the similarity between each pair of `-t
 associated most similar `-ts1` window are computed.
 
 (*) `-w_select_met` is the metric used for the selection of the most
-similar `-ts1` time-series window per each `--ts2_path` time-series file(s).`dtw` is the default value, however, any of
+similar `-ts1` time-series window per each `-ts2` time-series file(s).`dtw` is the default value, however, any of
 the
 [metrics](#available-metrics) are also available for this purpose using this argument.
 
@@ -123,38 +123,33 @@ Or manually download and unzip from https://github.com/alejandrofdez-us/similari
 
 1. Two time series computing all metrics and figures:
     ```Bash
-    similarity-ts-cli -ts1 data_samples/alibaba2018/ts1_machine_usage_days_1_to_8_grouped_300_seconds.csv -ts2 data_samples/alibaba2018/ts2 -head
+    similarity-ts-cli -ts1 data_samples/alibaba2018/ts1_machine_usage_days_1_to_8_grouped_300_seconds.csv -ts2 data_samples/alibaba2018/ts2/sample_0.csv -head
     ```
 
 1. Two time series computing only DTW metric and DTW figure:
     ```Bash
-    similarity-ts-cli -ts1 data_samples/alibaba2018/ts1_machine_usage_days_1_to_8_grouped_300_seconds.csv -ts2 data_samples/alibaba2018/ts2 -m dtw -f dtw
+    similarity-ts-cli -ts1 data_samples/alibaba2018/ts1_machine_usage_days_1_to_8_grouped_300_seconds.csv -ts2 data_samples/alibaba2018/ts2/sample_0.csv -head -m dtw -f dtw
     ```
 
-1. A time series and all time series within a directory computing only DTW metric and DTW figure::
+1. A time series and all time series within a directory computing only DTW metric and DTW figure:
     ```Bash
-    similarity-ts-cli -ts1 data_samples/example_1.csv -ts2_path experiments -m dtw -f dtw
+    similarity-ts-cli -ts1 data_samples/alibaba2018/ts1_machine_usage_days_1_to_8_grouped_300_seconds.csv -ts2 data_samples/alibaba2018/ts2 -head -m dtw -f dtw
     ```
 
-1. A time series and all time series within a directory computing every metric and figure available:
+1. A time series and all time series within a directory computing every metric and figure in SimilarityTS toolkit:
     ```Bash
-    similarity-ts-cli -ts1 data_samples/example_1.csv -ts2 experiments -m js mmd dtw ks kl cc cp hi -f delta dtw 2d pca tsne
-    ```
-
-1. Comparison using filenames whose first rows are used as headers (all filenames must contain the same header):
-    ```Bash
-    similarity-ts-cli -ts1 data_samples/example_1.csv -ts2 experiments -m dtw -f dtw -head
+    similarity-ts-cli -ts1 data_samples/alibaba2018/ts1_machine_usage_days_1_to_8_grouped_300_seconds.csv -ts2 data_samples/alibaba2018/ts2 -head -m js mmd dtw ks kl cc cp hi -f delta dtw 2d pca tsne
     ```
 
 1. Comparison between time series specifying the frequency in seconds in which samples were taken:
     ```Bash
-    similarity-ts-cli -ts1 data_samples/example_1.csv -ts2_path experiments -m dtw -f dtw -ts_freq_secs 60
+    similarity-ts-cli -ts1 data_samples/alibaba2018/ts1_machine_usage_days_1_to_8_grouped_300_seconds.csv -ts2 data_samples/alibaba2018/ts2 -head -m dtw -f dtw -ts_freq_secs 300
     ```
 
 1. Comparison between time series specifying the stride that determines the step or distance by which a fixed-size
    window moves over the first time series:
     ```Bash
-    similarity-ts-cli -ts1 data_samples/example_1.csv -ts2_path experiments -m dtw -f dtw -strd 5
+    similarity-ts-cli -ts1 data_samples/alibaba2018/ts1_machine_usage_days_1_to_8_grouped_300_seconds.csv -ts2 data_samples/alibaba2018/ts2 -head -m dtw -f dtw -strd 5
     ```
 
 1. Comparison between time series specifying the window selection metric to be used when selecting the most similar
@@ -162,13 +157,13 @@ Or manually download and unzip from https://github.com/alejandrofdez-us/similari
    the first time series:
 
     ```Bash
-    similarity-ts-cli -ts1 data_samples/example_1.csv -ts2_path experiments -m dtw -f dtw -w_select_met js
+    similarity-ts-cli -ts1 data_samples/alibaba2018/ts1_machine_usage_days_1_to_8_grouped_300_seconds.csv -ts2 data_samples/alibaba2018/ts2 -head -m dtw -f dtw -w_select_met js
     ```
 
-1. Using our sample time series to compute every single metric and figure:
+1. Using our sample time series to compute every single metric and figure with a fixed timestamp frequency and stride:
 
     ```Bash
-    similarity-ts-cli -ts1 data_samples/sample_1.csv -ts2_path experiments -head -m mmd dtw ks kl cc cp hi -f delta dtw 2d pca tsne -w_select_met cc -ts_freq_secs 60 -strd 5
+    similarity-ts-cli -ts1 data_samples/alibaba2018/ts1_machine_usage_days_1_to_8_grouped_300_seconds.csv -ts2 data_samples/alibaba2018/ts2 -head -m mmd dtw ks kl cc cp hi -f delta dtw 2d pca tsne -w_select_met cc -ts_freq_secs 300 -strd 5
     ```
 
 Every metric computation will be found in the `results` directory and every figure generated will be found at `figures`
@@ -177,7 +172,7 @@ directory.
 ## Advanced usage
 
 Additionally, users may implement their own metric or figure classes and include them within the `metrics` or `plots`
-directory. To ensure compatibility with our framework, they have to inherit from the base classes (`Metric` and `Plot`).
+directory. To ensure compatibility with our toolkit, they have to inherit from the base classes (`Metric` and `Plot`).
 
 The following code snippet is an example of a new metric:
 
@@ -185,10 +180,10 @@ The following code snippet is an example of a new metric:
 
 ```
 
-This allows the framework to dynamically recognize and utilize these custom classes based on user input. By including
-them in the argument parser, users can easily select their custom metrics or plots when running the framework, ensuring
+This allows the toolkit to dynamically recognize and utilize these custom classes based on user input. By including
+them in the argument parser, users can easily select their custom metrics or plots when running the toolkit, ensuring
 that their classes are properly integrated and applied during the time series evaluation process.
 
 ## License
 
-Time Series Evaluation Framework is free and open-source software licensed under the [MIT license](LICENSE).
+SimilarityTS toolkit is free and open-source software licensed under the [MIT license](LICENSE).
