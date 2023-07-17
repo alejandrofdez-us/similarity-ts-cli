@@ -91,7 +91,7 @@ def __main_script(arguments):
     ts2_dict = load_ts_from_path(arguments.time_series_2_path, header_ts1, arguments.header)
     similarity_ts_config = __create_similarity_ts_config(arguments, list(ts2_dict.keys()), header_ts1)
     similarity_ts = SimilarityTs(ts1, list(ts2_dict.values()), similarity_ts_config)
-    save_directory_folder = f'results/{datetime.now().strftime("%Y-%m-%d-%H-%M")}_ts1_{os.path.basename(arguments.time_series_1_filename)}_ts2_{arguments.time_series_2_path.replace(os.sep, "-")}'
+    save_directory_folder = f'results/{datetime.now().strftime("%Y-%m-%d-%H-%M")}'
     if similarity_ts_config.metric_config.metrics:
         __compute_metrics(similarity_ts, save_directory_folder)
     if similarity_ts_config.plot_config.figures:
@@ -155,24 +155,33 @@ def __create_similarity_ts_config(arguments, ts2_names, header_names):
 
 def __save_figures(filename, plot_name, generated_plots, path='results/figures'):
     for plot in generated_plots:
-        dir_path = __create_directory(filename, f'{path}/figures', plot_name)
-        plot[0].savefig(f'{dir_path}{plot[0].axes[0].get_title()}.pdf', format='pdf', bbox_inches='tight')
+        try:
+            dir_path = __create_directory(filename, f'{path}/figures', plot_name)
+            plot[0].savefig(f'{dir_path}{plot[0].axes[0].get_title()}.pdf', format='pdf', bbox_inches='tight')
+        except FileNotFoundError as file_not_found_error:
+            print(f'Could not create the figure in path: {file_not_found_error.filename}. This is probably because the path is too long.')
 
 
 def __create_directory(filename, path, plot_name):
-    if plot_name in PlotFactory.get_instance().figures_requires_all_samples:
-        dir_path = f'{path}/{plot_name}/'
-    else:
-        original_filename = os.path.splitext(filename)[0]
-        dir_path = f'{path}/{original_filename}/{plot_name}/'
-    os.makedirs(dir_path, exist_ok=True)
+    try:
+        if plot_name in PlotFactory.get_instance().figures_requires_all_samples:
+            dir_path = f'{path}/{plot_name}/'
+        else:
+            original_filename = os.path.splitext(filename)[0]
+            dir_path = f'{path}/{original_filename}/{plot_name}/'
+        os.makedirs(dir_path, exist_ok=True)
+    except FileNotFoundError as file_not_found_error:
+        print(f'Could not create the directory in path: {file_not_found_error.filename}. This is probably because the path is too long.')
     return dir_path
 
 
 def __save_metrics(computed_metrics, path='results/metrics'):
-    os.makedirs(f'{path}', exist_ok=True)
-    with open(f'{path}/results.json', 'w', encoding='utf-8') as file:
-        file.write(computed_metrics.decode('utf-8'))
+    try:
+        os.makedirs(f'{path}', exist_ok=True)
+        with open(f'{path}/results.json', 'w', encoding='utf-8') as file:
+            file.write(computed_metrics.decode('utf-8'))
+    except FileNotFoundError as file_not_found_error:
+        print(f'Could not store the metrics in path: {file_not_found_error.filename}. This is probably because the path is too long.')
 
 
 if __name__ == '__main__':
