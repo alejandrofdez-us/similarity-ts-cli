@@ -123,12 +123,12 @@ Or manually download and unzip from https://github.com/alejandrofdez-us/similari
 
 1. Two time series computing all metrics and figures:
     ```Bash
-    similarity-ts-cli -ts1 data_samples/example_1.csv -ts2 experiments/mini_example_1.csv
+    similarity-ts-cli -ts1 data_samples/alibaba2018/ts1_machine_usage_days_1_to_8_grouped_300_seconds.csv -ts2 data_samples/alibaba2018/ts2
     ```
 
 1. Two time series computing only DTW metric and DTW figure:
     ```Bash
-    similarity-ts-cli -ts1 data_samples/example_1.csv -ts2_path experiments/mini_example_1.csv -m dtw -f dtw
+    similarity-ts-cli -ts1 data_samples/alibaba2018/ts1_machine_usage_days_1_to_8_grouped_300_seconds.csv -ts2 data_samples/alibaba2018/ts2 -m dtw -f dtw
     ```
 
 1. A time series and all time series within a directory computing only DTW metric and DTW figure::
