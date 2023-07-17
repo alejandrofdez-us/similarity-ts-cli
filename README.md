@@ -62,34 +62,34 @@ pip install similarity-ts-cli
 
 ## Usage
 
-Users must provide `.csv` files containing multivariate time series by using the arguments `-ts1` and `-ts2_path`.
+Users must provide `.csv` files containing multivariate time series by using the arguments `-ts1` and `-ts2`.
 
 - `-ts1` should point to a single `csv` filename. This time series may represent the baseline or ground truth time
   series.
-- `-ts2_path` can point to another single `csv` filename or a directory that contains multiple `csv` files to be
+- `-ts2` can point to another single `csv` filename or a directory that contains multiple `csv` files to be
   compared with `-ts1` file.
 - `-head` if your time series files include a header this argument must be present. If not present, the software
   understands that csv files don't include a header row.
 
 Constraints:
 
-- `-ts1` time-series file and `-ts2_path` time-series file(s) must:
+- `-ts1` time-series file and `-ts2` time-series file(s) must:
     - have the same dimensionality (number of columns)
     - not include a timestamp column
     - include only numeric values
     - include the same header (if present)
 - if a header is present as first row, use the `-head` argument
-- all `-ts2_path` time-series files must have the same length (number of rows).
+- all `-ts2` time-series files must have the same length (number of rows).
 
 Note: the column delimiter is automatically detected.
 
-If `-ts1` time-series file is longer (more rows) than `-ts2_path` time-series file(s), the `-ts1` time series will be
+If `-ts1` time-series file is longer (more rows) than `-ts2` time-series file(s), the `-ts1` time series will be
 divided in windows of the same
-length as the `-ts2_path` time-series file(s).
+length as the `-ts2` time-series file(s).
 
-For each `-ts2_path` time-series file, the most similar window (*) from `-ts1` time series is selected.
+For each `-ts2` time-series file, the most similar window (*) from `-ts1` time series is selected.
 
-Finally, metrics and figures that assess the similarity between each pair of `-ts2_path` time-series file and its
+Finally, metrics and figures that assess the similarity between each pair of `-ts2` time-series file and its
 associated most similar `-ts1` window are computed.
 
 (*) `-w_select_met` is the metric used for the selection of the most
@@ -108,7 +108,7 @@ The following arguments are also available for fine-tuning:
 
 - `-ts_freq_secs` the frequency in seconds in which samples were taken just to generate the delta figures. By default is
   `1` second.
-- `-strd` when `ts1` time-series is longer than `ts2_path` time-series file(s) the windows are computed by using a
+- `-strd` when `ts1` time-series is longer than `ts2` time-series file(s) the windows are computed by using a
   stride of `1` by default. Sometimes using a larger value for the stride parameter improves the performance by skipping
   the computation of similarity between so many windows.
 
