@@ -121,7 +121,7 @@ def __compute_figures(similarity_ts, save_directory_path):
     tqdm_plot_computer_iterator = tqdm(plot_computer_iterator, total=len(plot_computer_iterator),
                                        desc='Computing plots  ', dynamic_ncols=True)
     for ts2_name, plot_name, generated_plots in tqdm_plot_computer_iterator:
-        tqdm_plot_computer_iterator.set_postfix(file=ts2_name)
+        tqdm_plot_computer_iterator.set_postfix(file=f'{ts2_name}|{plot_name}')
         __save_figures(ts2_name, plot_name, generated_plots, path=save_directory_path)
 
 
@@ -130,11 +130,11 @@ def __compute_metrics(similarity_ts, save_directory_path):
     metric_computer_iterator = similarity_ts.get_metric_computer()
     tqdm_metric_computer_iterator = tqdm(metric_computer_iterator, total=len(metric_computer_iterator),
                                          desc='Computing metrics')
-    for filename, metric_name, computed_metric in tqdm_metric_computer_iterator:
-        if filename not in metrics_results:
-            tqdm_metric_computer_iterator.set_postfix(file=filename)
-            metrics_results[filename] = {}
-        metrics_results[filename][metric_name] = computed_metric
+    for ts2_name, metric_name, computed_metric in tqdm_metric_computer_iterator:
+        if ts2_name not in metrics_results:
+            tqdm_metric_computer_iterator.set_postfix(file=f'{ts2_name}|{metric_name}')
+            metrics_results[ts2_name] = {}
+        metrics_results[ts2_name][metric_name] = computed_metric
     __save_metrics(json.dumps(metrics_results, indent=4, ensure_ascii=False).encode('utf-8'),
                    path=f'{save_directory_path}/metrics')
 
