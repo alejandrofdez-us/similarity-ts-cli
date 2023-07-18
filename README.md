@@ -1,7 +1,7 @@
-[![version](https://img.shields.io/badge/version-1.0-blue)](https://github.com/alejandrofdez-us/similarity-ts-cli/releases)
+[![version](https://img.shields.io/badge/pypi-1.0.0-blue)](https://pypi.org/project/similarity-ts-cli/)
 [![Python 3.9](https://img.shields.io/badge/python-3.9-darkgreen)](https://www.python.org/downloads/release/python-390/)
-[![last-update](https://img.shields.io/badge/last_update-07/XY/2023-brightgreen)](https://github.com/alejandrofdez-us/similarity-ts-cli/commits/main)
-![license](https://img.shields.io/badge/license-MIT-orange)
+[![last-update](https://img.shields.io/badge/last_update-07/18/2023-brightgreen)](https://github.com/alejandrofdez-us/similarity-ts-cli/commits/main)
+[![license](https://img.shields.io/badge/license-MIT-orange)](LICENSE)
 
 # SimilarityTS-cli: Command-line interface for SimilarityTS package
 
@@ -10,7 +10,6 @@
 - [Description](#description)
 - [Installation](#installation)
 - [Usage](#usage)
-- [Advanced usage](#advanced-usage)
 - [License](#license)
 
 ## Description
@@ -105,7 +104,7 @@ Constraints:
     - not include a timestamp column
     - include only numeric values
     - include the same header (if present)
-- if a header is present as first row, use the `-head` argument
+- if a header is present as first row, use the `-head` argument.
 - all `-ts2` time-series files must have the same length (number of rows).
 
 Note: the column delimiter is automatically detected.
@@ -127,7 +126,7 @@ the
 Users can provide metrics or figures to be computed/generated:
 
 - `-m` the [metrics](#available-metrics) names to be computed as a list separated by spaces.
-- `-f` the [figures](#available-figures) names to be computed as a list separated by spaces
+- `-f` the [figures](#available-figures) names to be computed as a list separated by spaces.
 
 If no metrics nor figures are provided, the tool will compute all the available metrics and figures.
 
@@ -153,11 +152,6 @@ Or manually download and unzip from https://github.com/alejandrofdez-us/similari
     similarity-ts-cli -ts1 data_samples/alibaba2018/ts1_machine_usage_days_1_to_8_grouped_300_seconds.csv -ts2 data_samples/alibaba2018/ts2 -head
     ```
    Every metric computation and figure generated will be found in the `results/{timestamp}/` directory.
-
-1. Two time series computing only DTW metric and DTW figure:
-    ```Bash
-    similarity-ts-cli -ts1 data_samples/alibaba2018/ts1_machine_usage_days_1_to_8_grouped_300_seconds.csv -ts2 data_samples/alibaba2018/ts2/sample_0.csv -head -m dtw -f dtw
-    ```
 
 1. Two time series computing only DTW metric and DTW figure:
     ```Bash
