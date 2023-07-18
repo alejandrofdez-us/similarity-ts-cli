@@ -109,6 +109,8 @@ Constraints:
 
 Note: the column delimiter is automatically detected.
 
+If your data include categorical values, it might be pre-processed to convert them to numerical values. All `ts2s` time-series must have the same length (number of rows).
+
 If `-ts1` time-series file is longer (more rows) than `-ts2` time-series file(s), the `-ts1` time series will be
 divided in windows of the same
 length as the `-ts2` time-series file(s).
