@@ -15,14 +15,14 @@
 
 ## Description
 
-SimilarityTS-cli is a command-line interface tool that act as an interface of the SimilarityTS package. Similarity-TS package facilitates the evaluation and comparison of
+SimilarityTS-cli is a command-line interface tool that act as an interface of the [SimilarityTS package](https://github.com/alejandrofdez-us/similarity-ts). Similarity-TS package facilitates the evaluation and comparison of
 multivariate time series data. It provides a comprehensive toolkit for analyzing, visualizing, and reporting multiple
 metrics and figures derived from time series datasets. The toolkit simplifies the process of evaluating the similarity of
 time series by offering data preprocessing, metrics computation, visualization, statistical analysis, and report generation
 functionalities. With its customizable features, SimilarityTS empowers researchers and data
 scientists to gain insights, identify patterns, and make informed decisions based on their time series data.
 
-This command-line interface is OS independant and can be easily installed and used.
+This command-line interface is OS independent and can be easily installed and used.
 
 ### Available metrics
 
