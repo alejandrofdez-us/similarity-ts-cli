@@ -1,12 +1,28 @@
+[![version](https://img.shields.io/badge/version-1.0-blue)](https://github.com/alejandrofdez-us/similarity-ts/releases)
+[![Python 3.9](https://img.shields.io/badge/python-3.9-darkgreen)](https://www.python.org/downloads/release/python-390/)
+[![last-update](https://img.shields.io/badge/last_update-07/XY/2023-brightgreen)](https://github.com/alejandrofdez-us/similarity-ts/commits/main)
+![license](https://img.shields.io/badge/license-MIT-orange)
 
-## Project Description
+# SimilarityTS-cli: Command-line interface for SimilarityTS package
 
-SimilarityTS is an open-source project designed to facilitate the evaluation and comparison of
+## Table of Contents
+
+- [Description](#description)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Advanced usage](#advanced-usage)
+- [License](#license)
+
+## Description
+
+SimilarityTS-cli is a command-line interface tool that act as an interface of the SimilarityTS package. Similarity-TS package facilitates the evaluation and comparison of
 multivariate time series data. It provides a comprehensive toolkit for analyzing, visualizing, and reporting multiple
 metrics and figures derived from time series datasets. The toolkit simplifies the process of evaluating the similarity of
 time series by offering data preprocessing, metrics computation, visualization, statistical analysis, and report generation
 functionalities. With its customizable features, SimilarityTS empowers researchers and data
 scientists to gain insights, identify patterns, and make informed decisions based on their time series data.
+
+This command-line interface is OS independant and can be easily installed and used.
 
 ### Available metrics
 
@@ -63,11 +79,9 @@ This toolkit can generate the following figures:
     <img src="https://github.com/alejandrofdez-us/similarity-ts/blob/e5b147b145970f3a93351a1004022fb30d20f5f0/docs/figures/DTW_sample_3_cpu_util_percent.png?raw=true" alt="DTW Figure for cpu">
     </div>
 
-## Installation as a python binary
+## Installation
 
-To get started, follow these steps to install the toolkit:
-
-### Step 1. Install the tool in your local environment:
+To install the tool in your local environment, just run follow command:
 
 ```Bash
 pip install similarity-ts-cli 
@@ -138,6 +152,7 @@ Or manually download and unzip from https://github.com/alejandrofdez-us/similari
     ```Bash
     similarity-ts-cli -ts1 data_samples/alibaba2018/ts1_machine_usage_days_1_to_8_grouped_300_seconds.csv -ts2 data_samples/alibaba2018/ts2 -head
     ```
+   Every metric computation and figure generated will be found in the `results/{timestamp}/` directory.
 
 1. Two time series computing only DTW metric and DTW figure:
     ```Bash
@@ -178,25 +193,6 @@ Or manually download and unzip from https://github.com/alejandrofdez-us/similari
     ```Bash
     similarity-ts-cli -ts1 data_samples/alibaba2018/ts1_machine_usage_days_1_to_8_grouped_300_seconds.csv -ts2 data_samples/alibaba2018/ts2 -head -m mmd dtw ks kl cc cp hi -f delta dtw 2d pca tsne -w_select_met cc -ts_freq_secs 300 -strd 5
     ```
-
-Every metric computation will be found in the `results` directory and every figure generated will be found at `figures`
-directory.
-
-## Advanced usage
-
-Additionally, users may implement their own metric or figure classes and include them within the `metrics` or `plots`
-directory. To ensure compatibility with our toolkit, they have to inherit from the base classes (`Metric` and `Plot`).
-
-The following code snippet is an example of a new metric:
-
-```Python
-
-```
-
-This allows the toolkit to dynamically recognize and utilize these custom classes based on user input. By including
-them in the argument parser, users can easily select their custom metrics or plots when running the toolkit, ensuring
-that their classes are properly integrated and applied during the time series evaluation process.
-
 ## License
 
 SimilarityTS toolkit is free and open-source software licensed under the [MIT license](LICENSE).
