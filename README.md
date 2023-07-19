@@ -11,6 +11,7 @@
 - [Installation](#installation)
 - [Usage](#usage)
 - [License](#license)
+- [Acknowledgements](#acknowledgements)
 
 ## Description
 
@@ -192,3 +193,6 @@ Or manually download and unzip from https://github.com/alejandrofdez-us/similari
 ## License
 
 SimilarityTS toolkit is free and open-source software licensed under the [MIT license](LICENSE).
+
+## Acknowledgements
+Project PID2021-122208OB-I00, PROYEXCEL\_00286 and  TED2021-132695B-I00 project, funded by MCIN / AEI / 10.13039 / 501100011033, by Andalusian Regional Government, and by the European Union - NextGenerationEU.
